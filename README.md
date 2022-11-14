@@ -1,1 +1,5 @@
 # change-render-samples-using-python-Blender
+
+Sometimes Blender just doesn't update things when the code is executed "blindly", so you need to imitate like some parts of it were called by user. To do so you need to create and register Blender Invoke or Modal Operator and then call it with ('INVOKE_DEFAULT'). In the most cases it solves such problems. I've written and tested this Modal Operator, it works. 
+
+Maybe there's even no need in the whole modal section and you could place context.scene.cycles.samples = self.samples and bpy.ops.render.render('INVOKE_DEFAULT') right inside invoke method and just return {'FINISHED'} from there, but I just wanted to ensure that the samples have been changed using the modal loop. More information about Blender Operators you may find in the API documentation And here is the code with lots of comments:
